@@ -56,6 +56,9 @@ module OmniAuth
         @profile ||= MultiJson.load(access_token.get("/v1/get/profile/format/json").body)['Profile']
       end
 
+      def callback_url
+        options[:callback_url] || (full_host + script_name + callback_path + query_string)
+      end
     end
   end
 end
